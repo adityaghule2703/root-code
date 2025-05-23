@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Code - Web Development Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.8);
+            border-bottom: 1px solid rgba(0, 255, 128, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff80;
+            text-decoration: none;
+            text-shadow: 0 0 20px rgba(0, 255, 128, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ff80;
+            text-shadow: 0 0 10px rgba(0, 255, 128, 0.8);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00ff80, #00d4ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #000000 0%, #0d0d0d 50%, #1a1a1a 100%);
+            color: white;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 255, 128, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #00ff80, #00d4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 255, 128, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(0, 255, 128, 0.6)); }
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: #c0c0c0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff80, #00d4ff);
+            color: #000;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 0 30px rgba(0, 255, 128, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 128, 0.5);
+            filter: brightness(1.2);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .code-illustration {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 128, 0.3);
+            box-shadow: 0 0 50px rgba(0, 255, 128, 0.2);
+        }
+
+        .code-lines {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #00ff80;
+            text-align: left;
+            line-height: 1.8;
+            text-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: #0a0a0a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #e0e0e0;
+            background: linear-gradient(45deg, #fff, #00ff80);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 128, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 255, 128, 0.3);
+            border-color: rgba(0, 255, 128, 0.6);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ff80, #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 128, 0.4);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+        }
+
+        .service-card p {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        /* Payment Plans Section */
+        .payment-plans {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(0, 255, 128, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 128, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .plan-card:hover::before {
+            left: 100%;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 255, 128, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 255, 128, 0.2);
+        }
+
+        .plan-card.featured {
+            border-color: rgba(0, 212, 255, 0.8);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .plan-title {
+            font-size: 1.8rem;
+            color: #00ff80;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-duration {
+            color: #c0c0c0;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: #e0e0e0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-button {
+            background: linear-gradient(45deg, #00ff80, #00d4ff);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .plan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 128, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: #000000;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+            background: linear-gradient(45deg, #fff, #00ff80);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 128, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff80;
+            text-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+        }
+
+        .stat-label {
+            color: #c0c0c0;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #fff, #00ff80);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 128, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(0, 255, 128, 0.3);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00ff80;
+            box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #00ff80, #00d4ff);
+            color: #000;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 128, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #000000, #0d0d0d);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(0, 255, 128, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #00ff80;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: #c0c0c0;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li a {
+            color: #c0c0c0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00ff80;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00ff80, #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 128, 0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #c0c0c0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+         .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff80;
+            text-decoration: none;
+            text-shadow: 0 0 20px rgba(0, 255, 128, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-symbol {
+            font-size: 2.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.25rem;
+            transform: translateY(-1px);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem; /* Reduced from 2rem to 1rem */
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; /* Reduced gap */
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            padding: 0 2rem; /* Added small padding to each section */
+        }
+
+        /* Keep all other footer styles the same */
+        .footer-section h3 {
+            color: #00ff80;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                padding: 0 0.5rem; /* Even less padding on mobile */
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .footer-section {
+                padding: 0;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+      
+        <nav>
+          
+            <a href="#" class="logo"><span style="font-size: 1.5rem; margin-right: 0.5rem;">&lt;/&gt;</span> Root Code</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Building Digital Solutions from the Root</h1>
+                <p>Transform your ideas into powerful web applications with our cutting-edge development services. We craft scalable, modern solutions that drive your business forward in the digital realm.</p>
+                <a href="#contact" class="cta-button">Start Your Project</a>
+            </div>
+            <div class="hero-image">
+                <div class="code-illustration">
+                    <div class="code-lines">
+                        <div>&lt;html&gt;</div>
+                        <div>&nbsp;&nbsp;&lt;head&gt;</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Your Vision&lt;/title&gt;</div>
+                        <div>&nbsp;&nbsp;&lt;/head&gt;</div>
+                        <div>&nbsp;&nbsp;&lt;body&gt;</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Innovation Starts Here&lt;/h1&gt;</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Let's build something amazing&lt;/p&gt;</div>
+                        <div>&nbsp;&nbsp;&lt;/body&gt;</div>
+                        <div>&lt;/html&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>Custom web applications built with modern technologies like React, Node.js, and Python. We create responsive, fast, and user-friendly websites that deliver exceptional performance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android. From concept to deployment, we ensure your mobile app provides an outstanding user experience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>API Development</h3>
+                    <p>Robust and scalable REST APIs and GraphQL services. We design and implement secure backend solutions that power your applications with reliable data management.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Cloud infrastructure setup and management on AWS, Azure, and Google Cloud. We help you leverage cloud technologies for scalability, security, and cost optimization.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful and intuitive user interfaces that enhance user experience. Our design team creates modern, accessible designs that convert visitors into customers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Performance Optimization</h3>
+                    <p>Speed up your existing applications with our optimization services. We analyze, identify bottlenecks, and implement solutions to improve performance and user satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Plans Section -->
+    <section id="pricing" class="payment-plans">
+        <div class="container">
+            <h2 class="section-title">Project Investment Plans</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 class="plan-title">Starter</h3>
+                    <div class="plan-price">₹4,500</div>
+                    <div class="plan-duration">Perfect for small projects</div>
+                    <ul class="plan-features">
+                        <li>✓ Basic Website (5 pages)</li>
+                        <li>✓ Responsive Design</li>
+                        <li>✓ Contact Form</li>
+                        <li>✓ SEO Optimization</li>
+                        <li>✓ 3 Months Support</li>
+                        <li>✓ Domain & Hosting Setup</li>
+                    </ul>
+                    <button class="plan-button">Choose Starter</button>
+                </div>
+                <div class="plan-card featured">
+                    <h3 class="plan-title">Professional</h3>
+                    <div class="plan-price">₹9,500</div>
+                    <div class="plan-duration">Most popular choice</div>
+                    <ul class="plan-features">
+                        <li>✓ Custom Web Application</li>
+                        <li>✓ Database Integration</li>
+                        <li>✓ User Authentication</li>
+                        <li>✓ Admin Dashboard</li>
+                        <li>✓ API Development</li>
+                        <li>✓ 6 Months Support</li>
+                        <li>✓ Cloud Deployment</li>
+                    </ul>
+                    <button class="plan-button">Choose Professional</button>
+                </div>
+                <div class="plan-card">
+                    <h3 class="plan-title">Enterprise</h3>
+                    <div class="plan-price">₹15,000+</div>
+                    <div class="plan-duration">For complex solutions</div>
+                    <ul class="plan-features">
+                        <li>✓ Full-Stack Application</li>
+                        <li>✓ Microservices Architecture</li>
+                        <li>✓ Advanced Security</li>
+                        <li>✓ Custom Integrations</li>
+                        <li>✓ Performance Optimization</li>
+                        <li>✓ 12 Months Support</li>
+                        <li>✓ Dedicated Team</li>
+                    </ul>
+                    <button class="plan-button">Choose Enterprise</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Root Code</h2>
+                    <p>At Root Code, we believe that every great application starts from strong foundations. Our team of experienced developers and designers work together to create digital solutions that not only meet your current needs but also scale with your future growth.</p>
+                    <p>Founded on the principles of innovation, quality, and client satisfaction, we have been helping businesses transform their ideas into powerful digital experiences. From startups to enterprise-level companies, we deliver solutions that drive results.</p>
+                    <p>Our approach combines cutting-edge technology with proven methodologies to ensure your project is delivered on time, within budget, and exceeds your expectations.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Ready to Start Your Project?</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service...</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="mobile-development">Mobile Development</option>
+                            <option value="api-development">API Development</option>
+                            <option value="cloud-solutions">Cloud Solutions</option>
+                            <option value="ui-ux-design">UI/UX Design</option>
+                            <option value="performance-optimization">Performance Optimization</option>
+                        </select>
+                        </div>
+                    <div class="form-group">
+                        <label for="budget">Project Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="under-5k">Under ₹5,000</option>
+                            <option value="5k-15k">₹5,000 - ₹15,000</option>
+                            <option value="15k-50k">₹15,000 - ₹50,000</option>
+                            <option value="50k-plus">₹50,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">Project Timeline</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select timeline...</option>
+                            <option value="asap">ASAP</option>
+                            <option value="1-3-months">1-3 Months</option>
+                            <option value="3-6-months">3-6 Months</option>
+                            <option value="6-months-plus">6+ Months</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project, goals, and any specific requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Project Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>
+                        <span class="logo-icon" style="font-size: 1.5rem; margin-right: 0.5rem;">&lt;/&gt;</span>
+                        Root Code
+                    </h3>
+                    <p>Building digital solutions from the ground up. We transform your ideas into powerful, scalable web applications that drive business growth.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">📘</a>
+                        <a href="#" class="social-link" title="Twitter">🐦</a>
+                        <a href="#" class="social-link" title="LinkedIn">💼</a>
+                        <a href="#" class="social-link" title="GitHub">🐙</a>
+                        <a href="#" class="social-link" title="Instagram">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Mobile Development</a></li>
+                        <li><a href="#services">API Development</a></li>
+                        <li><a href="#services">Cloud Solutions</a></li>
+                        <li><a href="#services">UI/UX Design</a></li>
+                        <li><a href="#services">Performance Optimization</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p style="margin-bottom: 0.8rem;">📧 rootcode@gmail.com</p>
+                    <p style="margin-bottom: 0.8rem;">📞 +91 8007395749</p>
+                    <p style="margin-bottom: 0.8rem;">📍 Mumbai, India</p>
+                    <p style="margin-bottom: 1.2rem;">🕒 Mon-Fri: 9AM-6PM IST</p>
+                    <div>
+                        <a href="#contact" class="cta-button" style="display: inline-block; padding: 0.7rem 1.2rem; font-size: 0.85rem;">Get Free Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Root Code. All rights reserved. | Privacy Policy | Terms of Service | Cookie Policy</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Co-Founded by Saksham Ghuge & Aditya Ghule</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for form handling and smooth interactions -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent! ✓';
+                submitBtn.style.background = 'linear-gradient(45deg, #00ff80, #00d4ff)';
+                
+                // Reset form
+                this.reset();
+                
+                // Show success message
+                alert('Thank you for your inquiry! We\'ll get back to you within 24 hours.');
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = 'linear-gradient(45deg, #00ff80, #00d4ff)';
+                }, 3000);
+            }, 2000);
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(13,13,13,0.95) 0%, rgba(26,26,26,0.95) 100%)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%)';
+                header.style.backdropFilter = 'blur(20px)';
+            }
+        });
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click effects to plan buttons
+        document.querySelectorAll('.plan-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const planTitle = this.closest('.plan-card').querySelector('.plan-title').textContent;
+                alert(`You selected the ${planTitle} plan! Please fill out the contact form below to get started.`);
+                
+                // Scroll to contact form
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Pre-select the service in the contact form
+                const serviceSelect = document.querySelector('#service');
+                serviceSelect.value = 'web-development';
+                serviceSelect.focus();
+            });
+        });
+
+        // Add typing animation to hero code
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing animation when page loads
+        window.addEventListener('load', function() {
+            const codeLines = document.querySelectorAll('.code-lines div');
+            const originalTexts = Array.from(codeLines).map(line => line.textContent);
+            
+            // Clear all lines first
+            codeLines.forEach(line => line.textContent = '');
+            
+            // Type each line with delay
+            originalTexts.forEach((text, index) => {
+                setTimeout(() => {
+                    codeLines[index].textContent = text;
+                }, index * 300);
+            });
+        });
+
+        // Add floating animation to service icons
+        document.querySelectorAll('.service-icon').forEach((icon, index) => {
+            icon.style.animation = `float 3s ease-in-out infinite`;
+            icon.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Add CSS animation for floating effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            .service-icon {
+                animation: float 3s ease-in-out infinite;
+            }
+            
+            /* Mobile menu toggle (basic responsive enhancement) */
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    background: rgba(13,13,13,0.95);
+                    flex-direction: column;
+                    padding: 2rem;
+                    backdrop-filter: blur(20px);
+                }
+                
+                .nav-links.active {
+                    display: flex;
+                }
+                
+                .mobile-menu-toggle {
+                    display: block;
+                    background: none;
+                    border: none;
+                    color: #00ff80;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
